@@ -1,0 +1,58 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-image: url("img/geometric.png");
+}
+button{
+    font-size: large;
+    color:white;
+    border-style: none;
+    border-radius: 15px 15px 15px 15px;
+    background-color: rgb(1, 1, 64);
+    padding:10px;
+    margin-top:10px;
+}
+input{
+    font-size: medium;
+    padding:10px;
+    border-style: groove;
+    border-radius: 15px 15px 15px 15px;
+    border-width: 1px;
+}
+a{
+    text-decoration: none;
+    color:blueviolet;
+}
+input:focus{
+    background-color: rgb(207, 255, 239);
+}
+.flex{
+    display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+align-items: flex-start;
+align-content: flex-start;
+}
+.left{
+    display: inline-flex;
+flex-direction: column;
+flex-wrap: wrap;
+justify-content: flex-start;
+align-items: flex-start;
+align-content: flex-start;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+
+}
+.mid{
+    background-color: white;
+    height:500px;
+    width:500px;
+    margin-left:100px;
+}
