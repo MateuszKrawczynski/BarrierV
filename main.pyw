@@ -7,18 +7,27 @@ import tkinter
 import webbrowser
 import os , shutil , subprocess
 
-API_KEY = open("apikey.txt","r").read()
+try:
+    if "apikey.txt" not in os.listdir("c:\\BarrierV"):
+        open("c:\\BarrierV\\apikey.txt","w").write("")
+except:
+    os.mkdir("c:\\BarrierV")
+    open("c:\\BarrierV\\apikey.txt","w").write("")
 
-rtp = "BarrierV-rtp.exe" # change to .exe after compiling
-if rtp not in os.listdir(f'C:\\Users\\{os.getenv("username")}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup'):
-    try:
-        os.mkdir("c:\\BarrierV")
-    except:
-        pass
+API_KEY = open("c:\\BarrierV\\apikey.txt","r").read()
+
+rtp = "BarrierV-rtp.pyw"
+if rtp not in os.listdir(f'C:\\BarrierV'):
     os.system(f'copy {rtp} "C:\\BarrierV\\{rtp}"')
-    open(f'C:\\BarrierV\\apikey.txt',"w").write(API_KEY)
-    open(f'C:\\Users\\{os.getenv("username")}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\barrierv-rtp.bat',"w").write(f"start c:\\BarrierV\\{rtp}")
-    os.system(f"start {rtp}")
+    
+    with open(f'C:\\BarrierV\\apikey.txt', "w") as f:
+        f.write(API_KEY)
+    
+    startup_path = f'C:\\Users\\{os.getenv("username")}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\barrierv-rtp.bat'
+    with open(startup_path, "w") as f:
+        f.write(f'start /b pythonw "C:\\BarrierV\\{rtp}"')
+    
+    os.system(f'start /b pythonw "c:\\BarrierV\{rtp}"')
 
 
 
@@ -96,7 +105,7 @@ def is_safe(filepath=None, url_to_scan=None, timeout=120):
 @eel.expose
 def newapi(apiholder):
     global API_KEY
-    open("apikey.txt","w").write(apiholder)
+    open("c:\\BarrierV\\apikey.txt","w").write(apiholder)
     API_KEY = apiholder
 @eel.expose
 def scanfile():
@@ -159,7 +168,7 @@ def sysscan():
         return "Scan wasn't completed"
 @eel.expose
 def checkapi():
-    if open("apikey.txt","r").read() == "":
+    if open("c:\\BarrierV\\apikey.txt","r").read() == "":
         return "false"
     else:
         return "true"
